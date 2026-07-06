@@ -1,0 +1,1 @@
+export default function DuplicateTable() { return <div>DuplicateTable</div>; }

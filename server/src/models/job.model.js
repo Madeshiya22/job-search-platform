@@ -120,6 +120,12 @@ const jobSchema = new mongoose.Schema(
       default: null,
     },
 
+    duplicateStatus: {
+      type: String,
+      enum: ["pending", "confirmed", "ignored"],
+      default: "pending",
+    },
+
     duplicateOf: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Job",

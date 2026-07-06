@@ -1,4 +1,5 @@
 import extractSalary from "./extractSalary.js";
+import { WORK_MODES, EMPLOYMENT_TYPES, APPLY_TYPES } from "../constants/job.constants.js";
 
 const normalizeJob = (job) => {
   return {
@@ -12,15 +13,15 @@ const normalizeJob = (job) => {
 
     description: job.description || "",
 
-    applyType: job.applyType || "Unknown",
+    applyType: job.applyType || APPLY_TYPES.UNKNOWN,
 
     experienceLevel: job.experience_level || "Unknown",
 
-    employmentType: job.employment_type || "Unknown",
+    employmentType: job.employment_type || EMPLOYMENT_TYPES.UNKNOWN,
 
     department: job.department || "General",
 
-    workMode: job.remote_flag || "Unknown",
+    workMode: job.remote_flag || WORK_MODES.UNKNOWN,
 
     salary: extractSalary(
       job.description,

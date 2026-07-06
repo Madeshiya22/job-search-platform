@@ -4,9 +4,9 @@
   "type": "module",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon server.js",
-    "start": "node server.js",
-    "import": "node scripts/importJobs.js"
+    "dev": "nodemon src/server.js",
+    "start": "node src/server.js",
+    "import": "node src/scripts/importJobs.js"
   },
   "keywords": [],
   "author": "",
