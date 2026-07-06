@@ -1,45 +1,25 @@
-export const extractSalary = (description, currency) => {
-  const result = {
+const extractSalary = (description = "", currency = "") => {
+  const salary = {
     raw: "",
     min: null,
     max: null,
-    currency: currency || "USD"
+    currency: currency || "",
   };
 
-  if (!description) return result;
+  if (!description) return salary;
 
-  // Look for patterns like $84,500 - $140,800
-  // Or 80k - 100k
-  // Or $120,000
-  const rangeRegex = /\$?\s*([\d,]+(?:\.\d+)?(?:k)?)\s*(?:-|to)\s*\$?\s*([\d,]+(?:\.\d+)?(?:k)?)/i;
-  const singleRegex = /(?:salary|pay|compensation).*?\$?\s*([\d,]+(?:\.\d+)?(?:k)?)/i;
+  // Example: $84,500 - $140,800
+  const match = description.match(
+    /\$?\s?([\d,]+)\s*-\s*\$?\s?([\d,]+)/
+  );
 
-  const rangeMatch = description.match(rangeRegex);
-  
-  const parseNumber = (str) => {
-    if (!str) return null;
-    let numStr = str.replace(/,/g, '');
-    let multiplier = 1;
-    if (numStr.toLowerCase().includes('k')) {
-      multiplier = 1000;
-      numStr = numStr.replace(/k/i, '');
-    }
-    const val = parseFloat(numStr);
-    return isNaN(val) ? null : val * multiplier;
-  };
-
-  if (rangeMatch) {
-    result.raw = rangeMatch[0].trim();
-    result.min = parseNumber(rangeMatch[1]);
-    result.max = parseNumber(rangeMatch[2]);
-  } else {
-    const singleMatch = description.match(singleRegex);
-    if (singleMatch) {
-      result.raw = singleMatch[0].trim();
-      result.min = parseNumber(singleMatch[1]);
-      result.max = parseNumber(singleMatch[1]);
-    }
+  if (match) {
+    salary.raw = match[0];
+    salary.min = Number(match[1].replace(/,/g, ""));
+    salary.max = Number(match[2].replace(/,/g, ""));
   }
 
-  return result;
+  return salary;
 };
+
+export default extractSalary;

@@ -48,30 +48,12 @@ const jobSchema = new mongoose.Schema(
     experienceLevel: {
       type: String,
       trim: true,
-      enum: [
-        "Internship",
-        "Entry",
-        "Junior",
-        "Mid",
-        "Senior",
-        "Lead",
-        "Unknown",
-      ],
       default: "Unknown",
     },
 
     employmentType: {
       type: String,
       trim: true,
-      enum: [
-        "Full-time",
-        "Part-time",
-        "Internship",
-        "Contract",
-        "Freelance",
-        "Temporary",
-        "Unknown",
-      ],
       default: "Unknown",
     },
 
@@ -84,7 +66,6 @@ const jobSchema = new mongoose.Schema(
     workMode: {
       type: String,
       trim: true,
-      enum: ["Remote", "Hybrid", "On-site", "Unknown"],
       default: "Unknown",
     },
 
@@ -131,6 +112,12 @@ const jobSchema = new mongoose.Schema(
     isDuplicate: {
       type: Boolean,
       default: false,
+    },
+
+    duplicateType: {
+      type: String,
+      enum: ["exact", "near", null],
+      default: null,
     },
 
     duplicateOf: {
