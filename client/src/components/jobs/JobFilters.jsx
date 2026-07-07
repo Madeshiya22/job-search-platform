@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useState, useEffect } from "react";
+import { MdSearch } from "react-icons/md";
 
 import {
   getCompanies,
@@ -29,14 +30,17 @@ const JobFilters = ({ filters, setFilters }) => {
   });
 
   return (
-    <div className="grid grid-cols-1 gap-4 rounded-xl bg-white p-5 shadow sm:grid-cols-2 lg:grid-cols-5">
-      <input
-        type="text"
-        placeholder="Search..."
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        className="rounded border p-2"
-      />
+    <div className="grid grid-cols-1 gap-4 rounded-xl bg-white p-5 shadow-sm border border-slate-100 sm:grid-cols-2 lg:grid-cols-5">
+      <div className="relative w-full">
+        <MdSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={20} />
+        <input
+          type="text"
+          placeholder="Search jobs..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="w-full rounded-lg border border-slate-300 py-2 pl-10 pr-4 outline-none transition-all focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+        />
+      </div>
 
       <select
         value={filters.company}
@@ -47,7 +51,7 @@ const JobFilters = ({ filters, setFilters }) => {
             page: 1,
           })
         }
-        className="rounded border p-2"
+        className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 outline-none transition-all focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
       >
         <option value="">All Companies</option>
 
@@ -70,7 +74,7 @@ const JobFilters = ({ filters, setFilters }) => {
             page: 1,
           })
         }
-        className="rounded border p-2"
+        className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 outline-none transition-all focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
       >
         <option value="">All Locations</option>
 
@@ -93,7 +97,7 @@ const JobFilters = ({ filters, setFilters }) => {
             page: 1,
           })
         }
-        className="rounded border p-2"
+        className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 outline-none transition-all focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
       >
         <option value="">Work Mode</option>
         <option>Remote</option>
@@ -110,7 +114,7 @@ const JobFilters = ({ filters, setFilters }) => {
             page: 1,
           })
         }
-        className="rounded border p-2"
+        className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 outline-none transition-all focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
       >
         <option value="">Employment Type</option>
         <option>Full-time</option>

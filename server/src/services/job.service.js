@@ -19,20 +19,7 @@ export const getJobs = async (query) => {
 
   // Search
   if (search) {
-    filter.$or = [
-      {
-        title: {
-          $regex: search,
-          $options: "i",
-        },
-      },
-      {
-        company: {
-          $regex: search,
-          $options: "i",
-        },
-      },
-    ];
+    filter.$text = { $search: search };
   }
 
   // Filters

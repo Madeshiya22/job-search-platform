@@ -56,7 +56,7 @@ const DuplicateTable = ({ jobs }) => {
           {jobs?.map((job) => (
             <tr
               key={job._id}
-              className="border-b"
+              className="border-b transition-colors duration-200 hover:bg-blue-50/50"
             >
               <td className="p-4">
                 {job.title}
@@ -71,14 +71,24 @@ const DuplicateTable = ({ jobs }) => {
               </td>
 
               <td className="p-4">
-                {job.duplicateType}
+                <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium capitalize ${
+                  job.duplicateType === 'exact' ? 'bg-red-100 text-red-800' : 'bg-orange-100 text-orange-800'
+                }`}>
+                  {job.duplicateType || "near"}
+                </span>
               </td>
 
               <td className="p-4">
-                {job.duplicateStatus}
+                <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium capitalize ${
+                  job.duplicateStatus === 'confirmed' ? 'bg-green-100 text-green-800' :
+                  job.duplicateStatus === 'ignored' ? 'bg-gray-100 text-gray-800' :
+                  'bg-yellow-100 text-yellow-800'
+                }`}>
+                  {job.duplicateStatus}
+                </span>
               </td>
 
-              <td className="space-x-2 p-4">
+              <td className="space-x-2 p-4 whitespace-nowrap">
                 <button
                   onClick={() =>
                     mutation.mutate({
@@ -86,7 +96,7 @@ const DuplicateTable = ({ jobs }) => {
                       status: "confirmed",
                     })
                   }
-                  className="rounded bg-green-600 px-3 py-2 text-white"
+                  className="rounded-lg bg-green-600 px-3 py-1.5 text-sm font-medium text-white shadow-sm transition-all hover:bg-green-700 hover:shadow focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 active:scale-95"
                 >
                   Confirm
                 </button>
@@ -98,7 +108,7 @@ const DuplicateTable = ({ jobs }) => {
                       status: "ignored",
                     })
                   }
-                  className="rounded bg-red-600 px-3 py-2 text-white"
+                  className="rounded-lg bg-slate-500 px-3 py-1.5 text-sm font-medium text-white shadow-sm transition-all hover:bg-slate-600 hover:shadow focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 active:scale-95"
                 >
                   Ignore
                 </button>

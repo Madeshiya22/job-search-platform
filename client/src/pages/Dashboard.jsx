@@ -1,4 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
+import { 
+  MdWork, 
+  MdBusiness, 
+  MdLocationOn, 
+  MdComputer, 
+  MdContentCopy, 
+  MdAccessTime 
+} from "react-icons/md";
 
 import DashboardCard from "../components/dashboard/DashboardCard";
 import CompanyChart from "../components/dashboard/CompanyChart";
@@ -31,31 +39,37 @@ const Dashboard = () => {
         <DashboardCard
           title="Total Jobs"
           value={stats.totalJobs}
+          icon={<MdWork size={24} />}
         />
 
         <DashboardCard
           title="Companies"
           value={stats.totalCompanies}
+          icon={<MdBusiness size={24} />}
         />
 
         <DashboardCard
           title="Remote Jobs"
           value={stats.remoteJobs}
+          icon={<MdComputer size={24} />}
         />
 
         <DashboardCard
           title="Duplicate Jobs"
           value={stats.duplicateJobs}
+          icon={<MdContentCopy size={24} />}
         />
 
         <DashboardCard
           title="Locations"
           value={stats.totalLocations}
+          icon={<MdLocationOn size={24} />}
         />
 
         <DashboardCard
           title="Full Time"
           value={stats.fullTimeJobs}
+          icon={<MdAccessTime size={24} />}
         />
       </div>
 

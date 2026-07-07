@@ -6,6 +6,7 @@ import Dashboard from "../pages/Dashboard";
 import Jobs from "../pages/Jobs";
 import JobDetails from "../pages/JobDetails";
 import DuplicateReview from "../pages/DuplicateReview";
+import NotFound from "../pages/NotFound";
 
 const AppRoutes = () => {
   return (
@@ -23,6 +24,7 @@ const AppRoutes = () => {
             element={<DuplicateReview />}
           />
         </Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );

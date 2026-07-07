@@ -23,9 +23,9 @@ const links = [
   },
 ];
 
-const Sidebar = () => {
+const Sidebar = ({ onClose }) => {
   return (
-    <aside className="w-64 bg-slate-900 text-white">
+    <aside className="h-full w-64 bg-slate-900 text-white">
       <div className="p-6 text-2xl font-bold">
         ApplyWizz
       </div>
@@ -35,11 +35,12 @@ const Sidebar = () => {
           <NavLink
             key={link.path}
             to={link.path}
+            onClick={onClose}
             className={({ isActive }) =>
-              `mx-3 flex items-center gap-3 rounded-lg px-4 py-3 transition ${
+              `mx-3 flex items-center gap-3 rounded-lg px-4 py-3 font-medium transition-all duration-200 ${
                 isActive
-                  ? "bg-blue-600"
-                  : "hover:bg-slate-800"
+                  ? "bg-gradient-to-r from-blue-600 to-blue-500 text-white shadow-md"
+                  : "text-slate-400 hover:bg-slate-800 hover:text-white"
               }`
             }
           >

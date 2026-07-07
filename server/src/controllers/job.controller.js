@@ -1,9 +1,11 @@
 import { getJobs, getJobById, getCompanies, getLocations, getDuplicateJobs, updateDuplicateStatus } from "../services/job.service.js";
 import mongoose from "mongoose";
+import { getJobsSchema } from "../validators/job.validator.js";
 
 export const getAllJobs = async (req, res) => {
   try {
-    const data = await getJobs(req.query);
+    const validatedQuery = getJobsSchema.parse(req.query);
+    const data = await getJobs(validatedQuery);
 
     res.status(200).json({
       success: true,
@@ -11,6 +13,14 @@ export const getAllJobs = async (req, res) => {
     });
   } catch (error) {
     console.error(error);
+
+    if (error.name === "ZodError") {
+      return res.status(400).json({
+        success: false,
+        message: "Validation Error",
+        errors: error.errors,
+      });
+    }
 
     res.status(500).json({
       success: false,
