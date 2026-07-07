@@ -3,6 +3,7 @@ import {
   MdDashboard,
   MdWork,
   MdContentCopy,
+  MdAutoFixHigh
 } from "react-icons/md";
 
 const links = [
@@ -20,6 +21,11 @@ const links = [
     title: "Duplicate Review",
     path: "/duplicates",
     icon: <MdContentCopy size={22} />,
+  },
+  {
+    title: "Resume AI",
+    path: "/resume-analyzer",
+    icon: <MdAutoFixHigh size={22} />,
   },
 ];
 

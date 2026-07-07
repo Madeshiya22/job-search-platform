@@ -6,6 +6,7 @@ import Dashboard from "../pages/Dashboard";
 import Jobs from "../pages/Jobs";
 import JobDetails from "../pages/JobDetails";
 import DuplicateReview from "../pages/DuplicateReview";
+import ResumeAnalyzer from "../pages/ResumeAnalyzer";
 import NotFound from "../pages/NotFound";
 
 const AppRoutes = () => {
@@ -22,6 +23,11 @@ const AppRoutes = () => {
           <Route
             path="/duplicates"
             element={<DuplicateReview />}
+          />
+
+          <Route 
+            path="/resume-analyzer" 
+            element={<ResumeAnalyzer />} 
           />
         </Route>
         <Route path="*" element={<NotFound />} />

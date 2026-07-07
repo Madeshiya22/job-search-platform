@@ -69,6 +69,17 @@ Detecting duplicate jobs ingested from various sources is a core feature of the 
 
 ---
 
+## 🤖 AI Resume Matching Flow
+
+A standout feature is the integrated **Resume Tailoring Agent**, powered by Gemini API.
+
+1. **Upload & Parse**: Recruiters upload a candidate's PDF resume. The backend parses it in-memory using `pdf-parse`.
+2. **Context Assembly**: The extracted text is combined with the selected Job Description.
+3. **LLM Evaluation**: A strict system prompt forces the Gemini API to act as a technical recruiter and output structured JSON.
+4. **Insights**: The frontend renders a dynamic Match Score (0-100), Strengths, Missing Skills, and Actionable Suggestions.
+
+---
+
 ## 🔌 API Design & Security
 
 All APIs are documented in [`docs/api.md`](./docs/api.md) and secured against common vulnerabilities:
@@ -81,11 +92,19 @@ All APIs are documented in [`docs/api.md`](./docs/api.md) and secured against co
 
 ## 📸 Screenshots
 
-*(Replace with actual hosted image links)*
-
 - **Dashboard**: `[Screenshot of Analytics Dashboard]`
 - **Job Search**: `[Screenshot of Jobs Page with Filters]`
 - **Duplicate Review**: `[Screenshot of the Duplicate Review Table]`
+- **Resume AI Upload**: `[Screenshot of Resume Upload UI]`
+- **Resume AI Result**: `[Screenshot of AI Analysis JSON rendering]`
+
+---
+
+## 🎥 Demo Video
+
+Watch the end-to-end demonstration of the platform, including the AI Resume Tailoring in action:
+
+`[Insert YouTube / Loom Link Here]`
 
 ---
 
@@ -98,7 +117,6 @@ All APIs are documented in [`docs/api.md`](./docs/api.md) and secured against co
 
 ## 🚀 Future Improvements
 
-- **AI Resume Tailoring (Bonus Feature)**: Integrating the Gemini API to match uploaded PDFs against job descriptions and provide gap analysis and match scores.
 - **Redis Caching**: Implementing a Redis layer to cache static lookup values (Companies, Locations) and heavy Dashboard aggregation queries.
 
 ---
