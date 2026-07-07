@@ -29,7 +29,7 @@ const JobFilters = ({ filters, setFilters }) => {
   });
 
   return (
-    <div className="grid grid-cols-5 gap-4 rounded-xl bg-white p-5 shadow">
+    <div className="grid grid-cols-1 gap-4 rounded-xl bg-white p-5 shadow sm:grid-cols-2 lg:grid-cols-5">
       <input
         type="text"
         placeholder="Search..."

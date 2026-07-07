@@ -1,20 +1,25 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-
 import { getJobById } from "../services/job.service";
+import { DetailsSkeleton } from "../components/common/Skeletons";
+import { ErrorState } from "../components/common/ErrorState";
 
 const JobDetails = () => {
   const { id } = useParams();
   const [showFullDesc, setShowFullDesc] = useState(false);
 
-  const { data: job, isLoading } = useQuery({
+  const { data: job, isLoading, isError } = useQuery({
     queryKey: ["job", id],
     queryFn: () => getJobById(id),
   });
 
   if (isLoading) {
-    return <h2>Loading...</h2>;
+    return <DetailsSkeleton />;
+  }
+
+  if (isError || !job) {
+    return <ErrorState message="Could not load job details. The job may have been removed." />;
   }
 
   return (
@@ -27,7 +32,7 @@ const JobDetails = () => {
         {job.company}
       </p>
 
-      <div className="mt-6 grid grid-cols-2 gap-6">
+      <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
         <div>
           <h3 className="font-semibold">Location</h3>
           <p>{job.location}</p>

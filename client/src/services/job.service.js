@@ -31,3 +31,17 @@ export const getDuplicates = async () => {
 
   return response.data;
 };
+
+export const updateDuplicateStatus = async (
+  id,
+  duplicateStatus
+) => {
+  const { data } = await api.patch(
+    `/jobs/duplicates/${id}`,
+    {
+      duplicateStatus,
+    }
+  );
+
+  return data;
+};

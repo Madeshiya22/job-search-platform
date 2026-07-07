@@ -9,7 +9,8 @@ const JobTable = ({
 }) => {
   return (
     <div className="rounded-xl bg-white shadow">
-      <table className="w-full">
+      <div className="overflow-x-auto">
+        <table className="w-full">
         <thead className="border-b bg-gray-100">
           <tr>
             <th className="p-4 text-left">Title</th>
@@ -51,6 +52,7 @@ const JobTable = ({
           ))}
         </tbody>
       </table>
+      </div>
 
       <Pagination
         pagination={pagination}
