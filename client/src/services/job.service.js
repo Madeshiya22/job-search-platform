@@ -8,10 +8,10 @@ export const getJobs = async (params) => {
   return response.data;
 };
 
-export const getJob = async (id) => {
-  const response = await api.get(`/jobs/${id}`);
+export const getJobById = async (id) => {
+  const { data } = await api.get(`/jobs/${id}`);
 
-  return response.data;
+  return data.data;
 };
 
 export const getCompanies = async () => {

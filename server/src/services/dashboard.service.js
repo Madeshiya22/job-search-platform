@@ -8,6 +8,9 @@ const getDashboardStats = async () => {
     remoteJobs,
     duplicateJobs,
     fullTimeJobs,
+    jobsByCompany,
+    jobsByWorkMode,
+    jobsByEmploymentType,
   ] = await Promise.all([
     Job.countDocuments(),
 
@@ -26,15 +29,41 @@ const getDashboardStats = async () => {
     Job.countDocuments({
       employmentType: { $in: ["Full Time", "Full-time"] },
     }),
+
+    Job.aggregate([
+      { $match: { company: { $nin: ["", null] } } },
+      { $group: { _id: "$company", count: { $sum: 1 } } },
+      { $sort: { count: -1 } },
+      { $limit: 10 }
+    ]),
+
+    Job.aggregate([
+      { $match: { workMode: { $nin: ["", null] } } },
+      { $group: { _id: "$workMode", count: { $sum: 1 } } },
+      { $sort: { count: -1 } }
+    ]),
+
+    Job.aggregate([
+      { $match: { employmentType: { $nin: ["", null] } } },
+      { $group: { _id: "$employmentType", count: { $sum: 1 } } },
+      { $sort: { count: -1 } }
+    ])
   ]);
 
   return {
-    totalJobs,
-    totalCompanies,
-    totalLocations,
-    remoteJobs,
-    duplicateJobs,
-    fullTimeJobs,
+    cards: {
+      totalJobs,
+      totalCompanies,
+      totalLocations,
+      remoteJobs,
+      duplicateJobs,
+      fullTimeJobs,
+    },
+    charts: {
+      jobsByCompany,
+      jobsByWorkMode,
+      jobsByEmploymentType,
+    },
   };
 };
 
